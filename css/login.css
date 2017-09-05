@@ -1,0 +1,131 @@
+@charset "utf-8";
+/* CSS Document */
+*{
+	margin:0px;
+	
+	padding:0px;	
+}
+body{
+	
+	overflow-x:hidden;
+}
+::-webkit-input-placeholder{
+     
+     font-size: 1em;
+     
+ }
+
+#bg{
+	width:100%;
+	height:100%;	
+}
+#container{
+	/*background:url(../image/img_background.png) no-repeat left top;
+	backgroundsize:100% 100%;
+	overflow:hidden;*/
+	
+	
+	
+}
+#form{
+	height:85%;
+	width:25.33%;
+	position:absolute;
+	top:10%;
+	right:10%;
+	
+	background: #FFFFFF;
+	box-shadow: 0 32px 32px 0 rgba(0,0,0,0.30);
+	border-radius: 8px;
+}
+
+#quxueicon{
+	margin:30% 38.75% 21% 38.75%;
+	height:14%;
+	width:22.5%;
+}
+#username{
+	border-left-width:0px;
+	border-top-width:0px;
+	border-right-width:0px;
+	border-bottom-width:0.24%;
+	font-family: PingFangSC-Medium;
+	font-size: 1.25em;
+	
+	color:rgba(74,74,74,1);
+	letter-spacing: 0.56px;
+	line-height: 4.29%;
+	width:62.5%;
+	margin:0px 55.42% 0px 18.75%;
+}
+#password{
+	border-left-width:0px;
+	border-top-width:0px;
+	border-right-width:0px;
+	border-bottom-width:0.24%;
+	font-family: PingFangSC-Medium;
+	font-size: 1.25em;
+	color:rgba(74,74,74,1);
+	letter-spacing: 0.56px;
+	line-height: 4.29%;
+	width:62.5%;
+	margin:0px 43.33% 0px 18.75%;
+}
+#username:focus{
+	outline:none;
+}
+#password:focus{
+	outline:none;	
+}
+#notice1{
+	visibility:hidden;
+	width:62.5%;
+	font-family: PingFangSC-Medium;
+	font-family: PingFangSC-Medium;
+	font-size: 0.75em;
+	color: #FF4D4D;
+	letter-spacing: 0.56px;
+	height:2.86%;
+	margin:0px 57.5% 10% 18.75%;
+}
+#notice2{
+	visibility:hidden;
+	width:62.5%;
+	font-family: PingFangSC-Medium;
+	font-size: 0.75em;
+	color: #FF4D4D;
+	letter-spacing: 0.56px;
+	height:2.86%;
+	margin:0px 57.5% 21% 18.75%; 
+}
+#login{
+	transition:0.5s;
+	width:62.5%;
+	height:7.14%;
+	background-image: linear-gradient(-45deg, #495AFF 0%, #0ACFFE 100%);
+	box-shadow: 0 8px 8px 0 rgba(24,103,255,0.20);
+	border-radius: 80px;
+	font-family: PingFangSC-Medium;
+	font-size: 1em;
+	color: #FFFFFF;
+	letter-spacing: 0.56px;
+	outline:none;
+	margin:0px 18.75% 18.57% 18.75%;
+	border:0px;
+}
+#login:hover{
+	background-image: linear-gradient(-45deg, #7D8AFF 0%, #3DD8FF 100%);
+	transition:0.5s;
+	box-shadow: 0 16px 16px 0 rgba(24,103,255,0.20);
+	cursor:pointer;
+	
+}
+#login:active{
+	transition:0.1s;
+	width:60.41%;
+	height:5.95%;
+	margin:0.59% 19.79% 19.17% 19.79%;
+}
+
+
+

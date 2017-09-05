@@ -1,0 +1,129 @@
+@charset "utf-8";
+/* CSS Document */
+.bord{
+	height:1px;
+	width:360px;
+	background: rgba(64,85,128,0.10);	
+}
+*{
+	margin:0px;
+	
+	padding:0px;	
+}
+
+#left-menu{
+	width:360px;
+	height:1080px;
+	position:absolute;
+	background: #FFFFFF;
+	box-shadow: 0 0 8px 0 rgba(64,85,128,0.30);	
+}
+#mainframe{
+	width:1560px;
+	height:1080px;
+	position:absolute;
+	left:360px;
+	top:0px;
+}
+#menu-top{
+	width:360px;
+	height:139px;
+	
+}
+#menu-middle{
+	margin-top:20px;
+	height:500px;
+	width:360px;
+}
+#menu-bottom{
+	margin-top:20px;
+	width:360px;
+	height:auto;
+}
+#info{
+	
+	width:200px;
+	height:60px;
+	
+	margin-left:120px;
+	margin-top:40px;
+	margin-bottom:39px;
+	
+}
+#headphoto{
+	height:60px;
+	width:60px;
+	float:left;
+	margin-left:40px;
+	
+}
+#username{
+	font-family: PingFangSC-Regular;
+	font-size: 18px;
+	color: #000000;
+	letter-spacing: 0.5px;
+	line-height: 20px;
+	
+}
+#rank{
+	font-family: PingFangSC-Regular;
+	font-size: 14px;
+	color: #9B9B9B;
+	letter-spacing: 0.56px;
+	line-height: 20px;	
+}
+#lastlogin{
+	font-family: PingFangSC-Regular;
+	font-size: 14px;
+	color: #9B9B9B;
+	letter-spacing: 0.56px;
+	line-height: 20px;	
+}
+.menubutton{
+	width:360px;
+	height:80px;
+	
+}
+.menubutton:hover{
+	background: #F5FAFC;
+	cursor:pointer;
+}
+.bottommenubutton{
+	width:360px;
+	height:80px;
+}
+.bottommenubutton:hover{
+	background: #F5FAFC;
+	cursor:pointer;
+}
+.chosen{
+	float:left;
+	width:4px;
+	height:20px;
+	margin:32px 16px 28px 30px;
+	background: #1867FF;
+	border-radius: 10px;
+	visibility:hidden;
+}
+.menubutton-p{
+	margin:30px 0 30px 0;
+	float:left;
+	font-family: PingFangSC-Medium;
+	font-size: 20px;
+	color: #000000;
+	letter-spacing: 0.56px;
+	line-height: 20px;
+}
+.messageno{
+	margin:30px 50px 30px 157px;
+	float:left;
+	
+	height:20px;
+	font-family: ArialMT;
+	
+	font-size: 14px;
+	background: #FF4D4D;
+	border-radius: 20px;	
+	letter-spacing: 0.39px;
+	text-align:center;	
+}
