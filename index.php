@@ -16,7 +16,9 @@
             <?php 
 				error_reporting(E_ALL || ~E_NOTICE);
 				$userid="null";
+				$userid2="null";
 				$userid=$_POST["userid"];
+				$userid2=$userid;
 				error_reporting(0);
 				
 				
@@ -55,7 +57,7 @@
             <div id="mb2" class="menubutton">
                 <div id="cs2" class="chosen"></div>
                 <div id="mbp2" class="menubutton-p">教师管理</div>
-                <div id="no2" class="messageno"></div>
+                <div id="no2" class="messageno" style="width:20px;"></div>
             </div>
             <div id="mb3" class="menubutton">
             	<div id="cs3" class="chosen"></div>
@@ -89,39 +91,20 @@
 			type: 'POST',
 				url: 'phpbase/ajaxselect.php',
 				data:{
-					"sql":"select count(*) new from raisecourse where stage=1"
+					"sql":"select count(*) new from raisecourse where stage=1 and adminid='<?php echo $userid2;?>'"
 				},
 				async: false, 
 				success: function (data) {
-					
 					var result=eval("("+data+")");
 					var newinfo=result[0][0];
 					
-					if(newinfo<=9){
-						$("#no1").css({
-							"width":"20px",
-							"margin-left":"157px"
-						});
-					}
-					if(newinfo>9&&newinfo<=99){
-						$("#no1").css({
-							"width":"50px",
-							"margin-left":"147px"
-						});
-					}
-					if(newinfo>99){
-						$("#no1").css({
-							"width":"40px",
-							"margin-left":"137px"
-						});	
-					}
-					if(newinfo>999){
-						newinfo=999;
+					
+					
 						$("#no1").css({
 							"width":"40px",
 							"margin-left":"137px"
 						});
-					}	
+					
 					
 					
 					if(newinfo!=0){
@@ -202,6 +185,8 @@
 					"visibility":"visible"	
 				});
 				mbp=null;
+				console.log(no);
+				$("#no"+no).css({"visibility":"hidden" });
 				
 		});
 		

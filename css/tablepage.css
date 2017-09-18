@@ -20,17 +20,23 @@ tr{
 
 
 	#dialogMove{
-		width:500px;
-		height:300px;
+		width:300px;
+		
+		
 		position:absolute;
 		left:250px;
 		top:50px;
+		background:rgba(255,255,255,1);
+		box-shadow: 0 32px 32px 0 rgba(153,153,153,1);
+		border-radius: 8px;
+		
 	}
 	.ui-dialog-title{
 		height: 48px;line-height: 48px; padding:0px 20px;color: #535353;font-size: 16px;
 		border-bottom: 1px solid #efefef;background: #f5f5f5;
 		cursor: move;
 		user-select:none;
+		border-radius: 8px;
 	}
 	.ui-dialog-closebutton{
 		width: 16px;height: 16px;display: block;
@@ -40,4 +46,11 @@ tr{
 	}
 	.ui-dialog-closebutton:hover{background:url(../image/close_hov.png);}
 
-	
+	#dialog-i1{
+		margin-left:20px;
+		margin-right:20px;	
+	}
+	#console{
+		margin-left:20px;
+		color:rgba(255,0,0,1);	
+	}

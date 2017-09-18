@@ -19,26 +19,29 @@
     <a id="datainfo" class="inline"></a>
     
 </div>
-<div><input id="operate" type="button" onclick="showDialog();" value="操作当前项目"><input id="refresh" type="button" value="刷新数据"></div>
+<div><input id="operate" type="button" onclick="showDialog();" value="操作当前选中项目"><input id="refresh" type="button" value="刷新表格数据"></div>
 <table id="datagrid" cellpadding="30px;"></table>
-	<div class="ui-dialog" id="dialogMove" onselectstart='return false;'>
+	<div class="ui-dialog" id="dialogMove" onselectstart='return false;' >
 		<div class="ui-dialog-title" id="dialogDrag"  onselectstart="return false;" >
 			操作当前众筹
 			<a class="ui-dialog-closebutton" href="javascript:hideDialog();"></a>
 		</div>
-		<p id="dialog-i1"></p>
+		<p id="dialog-i1">系统提示：请选择数据进行操作(直接点击表格需要操作的一行数据)</p>
         <hr/>
-        <input id="pass" type="button" value="通过审核"/>
+        <input id="pass" type="button" value="通过审核" style="margin-left:70px;" />
         <input id="refuse" type="button" value="拒绝该众筹"/>
-        <br/>
-        <label>说明您操作的理由或是备注</label><input id="dialog-i2"/>
+        <hr/>
+        <p id="console">控制台</p>
 	</div>
-<script type="text/javascript">
-var adminid=parent.adminid;
-var tablecursor;
-var cursorbefore="-1";
-$(document).ready(function(e) {
-	var data;
+    
+    <script type="text/javascript">
+    var adminid=parent.adminid;
+	console.log(adminid);
+	var tablecursor;
+	var rsid;
+	var cursorbefore="-1";
+    $(document).ready(function(e) {
+		var data;
 	function getdata(){
 		$.ajax({
 					type: 'POST',
@@ -55,7 +58,6 @@ $(document).ready(function(e) {
 		});
 	}
 	getdata();
-	
 	function updatetable(pageSize,pageno){
     
 					
@@ -115,6 +117,7 @@ $(document).ready(function(e) {
 		
 	}//end of updatetable()
 	updatetable(4,1);
+		
 	$("#next").click(function(){
 		var pageno=parseInt($("#pageno").val());
 		pageno++;
@@ -167,6 +170,7 @@ $(document).ready(function(e) {
 		else{$("#dialog-i1").html("请选择数据进行操作");}	
 		console.log(rsid);*/
 	});
+	$("#console").hide();
 	$("#pass").click(function(){ 
 	var result=eval(data);
 		$.ajax({
@@ -177,14 +181,31 @@ $(document).ready(function(e) {
 					},
 					async: false, 
 					success: function () {
-						alert("当前众筹已通过审核");
-						updatetable(4,1);
+						getdata();
+						var pageno=$("#pageno").val();
+
+						var time=3000;
+						var timer1=setInterval(function(){
+							$("#console").show();
+							$("#console").html("("+time/1000+")s系统提示:已通过审核！");
+							
+							if(time<=0){
+								$("#console").hide();
+								clearInterval(timer1);
+							}
+							time=time-1000;
+							console.log(time);
+						}, 1000);
+						
+						updatetable(4,pageno);
 					}
 			   
 		});
 	});
+	
 	$("#refuse").click(function(){
 		var result=eval(data);
+		
 		$.ajax({
 					type: 'POST',
 					url: '../phpbase/ajaxselect.php',
@@ -193,21 +214,40 @@ $(document).ready(function(e) {
 					},
 					async: false, 
 					success: function () {
-						alert("已拒绝请求");
-						updatetable(4,1);
+						getdata();
+						var pageno=$("#pageno").val();
+						
+						var time=3000;
+						var timer1=setInterval(function(){
+							$("#console").show();
+							$("#console").html("("+time/1000+")s系统提示:众筹被拒绝！");
+							
+							if(time<=0){
+								$("#console").hide();
+								clearInterval(timer1);
+							}
+							time=time-1000;
+							console.log(time);
+						}, 1000);
+						
+						updatetable(4,pageno);
 					}
 			   
 		});
 	});
 	$(document).on("click",".zhltr",function(){
 		var result=eval(data);
-		var rsid=result[tablecursor][0];
+		rsid=result[tablecursor][0];
 		$("#dialog-i1").html("您选择了"+rsid+"进行操作");	
-	})
-	
-});
-</script>
-<script type="text/javascript">
+	});
+		
+		
+    });
+    </script>
+    
+    
+    
+    <script type="text/javascript">
 	var dialogInstace , onMoveStartId;	//	用于记录当前可拖拽的对象
 	
 		// var zIndex = 9000;
@@ -308,7 +348,8 @@ $(document).ready(function(e) {
 
 		//	侦听浏览器窗口大小变化
 		//window.onresize = showDialog;
-</script>
+
+    </script>
 
 
 </body>

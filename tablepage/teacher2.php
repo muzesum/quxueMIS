@@ -22,20 +22,22 @@
 <div><input id="operate" type="button" onclick="showDialog();" value="操作当前项目"><input id="refresh" type="button" value="刷新数据"></div>
 <table id="datagrid" cellpadding="30px;"></table>
 	<div class="ui-dialog" id="dialogMove" onselectstart='return false;'>
+		
 		<div class="ui-dialog-title" id="dialogDrag"  onselectstart="return false;" >
 			操作当前众筹
 			<a class="ui-dialog-closebutton" href="javascript:hideDialog();"></a>
 		</div>
-		<p id="dialog-i1"></p>
+		<p id="dialog-i1">系统提示：请选择数据进行操作(直接点击表格需要操作的一行数据)</p>
         <hr/>
-        <input type="button" value="通过审核"/>
-        <input type="button" value="拒绝该众筹"/>
-        <br/>
-        <label>说明您操作的理由或是备注</label><input id="dialog-i2"/>
+        
+        <input id="refuse" type="button" value="该教师需要重新审核" style="margin-left:90px;"/>
+        <hr/>
+        <p id="console">控制台</p>
 	</div>
 <script type="text/javascript">
 var adminid=parent.adminid;
 var tablecursor;
+var rsid;
 var cursorbefore="-1";
 $(document).ready(function(e) {
 	var data;
@@ -101,7 +103,7 @@ $(document).ready(function(e) {
 						html+="<td>"+(i+1)+"</td>";
 						for(var i2=0;i2<cellCount;i2++){//i2是列数
 							html+="<td>";
-							if(i2==0){html+='<img src="http://'+result[i][0]+'"/>';}
+							if(i2==0){html+='<img style="width:100px;height:auto;" src="http://'+result[i][0]+'"/>';}
 							else{html+=result[i][i2];}
 							html+="</td>";
 							
@@ -168,9 +170,40 @@ $(document).ready(function(e) {
 		console.log(rsid);*/
 		
 	});
+	$("#console").hide();
+	$("#refuse").click(function(){
+		var result=eval(data);
+		$.ajax({
+					type: 'POST',
+					url: '../phpbase/ajaxselect.php',
+					data:{
+						"sql":"UPDATE teacher SET stage='1',ischecked='n' WHERE (teacherid='"+result[tablecursor][1]+"')"
+					},
+					async: false, 
+					success: function () {
+						getdata();
+						var pageno=$("#pageno").val()
+						
+						var time=3000;
+						var timer1=setInterval(function(){
+							$("#console").show();
+							$("#console").html("("+time/1000+")s系统提示：教师已成功被设置为未审核状态！");
+							
+							if(time<=0){
+								$("#console").hide();
+								clearInterval(timer1);
+							}
+							time=time-1000;
+							console.log(time);
+						}, 1000);
+						updatetable(4,pageno);
+					}
+			   
+		});
+	});
 	$(document).on("click",".zhltr",function(){
 		var result=eval(data);
-		var rsid=result[tablecursor][3];
+		rsid=result[tablecursor][3];
 		$("#dialog-i1").html("您选择了"+rsid+"进行操作");	
 	})
 	

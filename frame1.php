@@ -81,9 +81,11 @@
 		time();
 		setInterval(time, 1000);
 	});
-	var adminid=window.parent.adminid;
+	var adminid=parent.adminid;
 	
     </script>
-    
+    <script type="text/javascript">
+    var adminid=parent.adminid;
+    </script>
 </body>
 </html>
